@@ -3,28 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const useQueryState = (queryKey, initialValue) => {
-  const [searchValue, setSearchValue] = useState(initialValue);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (!searchValue) {
-      params.delete(queryKey);
-    } else {
-      params.set(queryKey, searchValue);
-    }
-    console.log(params);
-  }, [queryKey, searchValue]);
-
-  useEffect(() => {
-    console.log(searchValue);
-  }, [searchValue]);
-  return [searchValue, setSearchValue];
-};
-
 export default function Home() {
-  const [searchValue, setSearchValue] = useQueryState("s", "");
-
+  const [searchValue, setSearchValue] = useState("");
+  const url = window.location.href;
   return (
     <div className="flex flex-col gap-4 py-8 max-w-4xl m-auto px-4">
       <header>
@@ -56,9 +37,9 @@ export default function Home() {
             </svg>
           </label>
         </fieldset>
-        {/* <Link
+        <Link
           href={`${url}?search=${searchValue}`}
-        >{`${url}?search=${searchValue}`}</Link> */}
+        >{`${url}?search=${searchValue}`}</Link>
       </main>
     </div>
   );
