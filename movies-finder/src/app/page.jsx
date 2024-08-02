@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+// L'input doit envoyer une query => searchParams
+// Etudier searchParams
+
 export default function Home() {
   const [searchValue, setSearchValue] = useState("");
   const url = window.location.href;
